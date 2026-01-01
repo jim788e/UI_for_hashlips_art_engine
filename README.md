@@ -1,306 +1,160 @@
-# Welcome to HashLips 👄
+# HashLips Art Engine v2.0
 
-![](https://github.com/HashLips/hashlips_art_engine/blob/main/logo.png)
+A modern, browser-based NFT art generation tool built with Next.js 15, TypeScript, and React. Generate unique NFT art collections with layer-based composition directly in your browser.
 
-All the code in these repos was created and explained by HashLips on the main YouTube channel.
+## Features
 
-To find out more please visit:
+- 🎨 **Browser-Based Generation** - No server required, runs entirely in the browser
+- 🖼️ **Layer Management** - Drag & drop layer folders, reorder layers, configure blend modes and opacity
+- 🎲 **Rarity System** - Weight-based rarity system using filename patterns (e.g., `Element#70.png`)
+- 🔄 **Real-Time Preview** - See a preview of your generated artwork before full generation
+- 📦 **ZIP Export** - Download your complete collection as a ZIP file with images and metadata
+- ⚡ **Async Generation** - Non-blocking generation with progress tracking
+- 🎯 **TypeScript** - Fully typed for better developer experience
+- 🎨 **Modern UI** - Clean, responsive interface built with Tailwind CSS
 
-[📺 YouTube](https://www.youtube.com/channel/UC1LV4_VQGBJHTJjEWUmy8nA)
+## Getting Started
 
-[👄 Discord](https://discord.com/invite/qh6MWhMJDN)
+### Prerequisites
 
-[💬 Telegram](https://t.me/hashlipsnft)
+- Node.js 18+ and npm/yarn/pnpm
 
-[🐦 Twitter](https://twitter.com/hashlipsnft)
+### Installation
 
-[ℹ️ Website](https://hashlips.online/HashLips)
-
-# HashLips Art Engine 🔥
-
-![](https://github.com/HashLips/hashlips_art_engine/blob/main/banner.png)
-
-Create generative art by using the canvas api and node js. Before you use the generation engine, make sure you have node.js installed.
-
-## Installation 🛠️
-
-If you are cloning the project then run this first, otherwise you can download the source code on the release page and skip this step.
-
-```sh
+1. Clone the repository:
+```bash
 git clone https://github.com/HashLips/hashlips_art_engine.git
+cd hashlips_art_engine
 ```
 
-Go to the root of your folder and run this command if you have yarn installed.
-
-```sh
-yarn install
-```
-
-Alternatively you can run this command if you have node installed.
-
-```sh
+2. Install dependencies:
+```bash
 npm install
+# or
+yarn install
+# or
+pnpm install
 ```
 
-## Usage ℹ️
-
-Create your different layers as folders in the 'layers' directory, and add all the layer assets in these directories. You can name the assets anything as long as it has a rarity weight attached in the file name like so: `example element#70.png`. You can optionally change the delimiter `#` to anything you would like to use in the variable `rarityDelimiter` in the `src/config.js` file.
-
-Once you have all your layers, go into `src/config.js` and update the `layerConfigurations` objects `layersOrder` array to be your layer folders name in order of the back layer to the front layer.
-
-_Example:_ If you were creating a portrait design, you might have a background, then a head, a mouth, eyes, eyewear, and then headwear, so your `layersOrder` would look something like this:
-
-```js
-const layerConfigurations = [
-  {
-    growEditionSizeTo: 100,
-    layersOrder: [
-      { name: "Head" },
-      { name: "Mouth" },
-      { name: "Eyes" },
-      { name: "Eyeswear" },
-      { name: "Headwear" },
-    ],
-  },
-];
+3. Run the development server:
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
 ```
 
-The `name` of each layer object represents the name of the folder (in `/layers/`) that the images reside in.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-Optionally you can now add multiple different `layerConfigurations` to your collection. Each configuration can be unique and have different layer orders, use the same layers or introduce new ones. This gives the artist flexibility when it comes to fine tuning their collections to their needs.
+## Usage
 
-_Example:_ If you were creating a portrait design, you might have a background, then a head, a mouth, eyes, eyewear, and then headwear and you want to create a new race or just simple re-order the layers or even introduce new layers, then you're `layerConfigurations` and `layersOrder` would look something like this:
+### 1. Add Layers
 
-```js
-const layerConfigurations = [
-  {
-    // Creates up to 50 artworks
-    growEditionSizeTo: 50,
-    layersOrder: [
-      { name: "Background" },
-      { name: "Head" },
-      { name: "Mouth" },
-      { name: "Eyes" },
-      { name: "Eyeswear" },
-      { name: "Headwear" },
-    ],
-  },
-  {
-    // Creates an additional 100 artworks
-    growEditionSizeTo: 150,
-    layersOrder: [
-      { name: "Background" },
-      { name: "Head" },
-      { name: "Eyes" },
-      { name: "Mouth" },
-      { name: "Eyeswear" },
-      { name: "Headwear" },
-      { name: "AlienHeadwear" },
-    ],
-  },
-];
+- Click "Add Layer" to create a new layer
+- Enter a layer name (e.g., "Background", "Eyes", "Hat")
+- Optionally set a display name for metadata
+- Upload images for the layer using the file input
+
+### 2. Configure Rarity
+
+Set rarity weights in filenames using the `#` delimiter:
+- `Common#50.png` - 50% weight (common)
+- `Rare#20.png` - 20% weight (rare)
+- `Legendary#1.png` - 1% weight (legendary)
+
+The weight determines how likely an element is to be selected during generation.
+
+### 3. Configure Settings
+
+- **Collection Name**: Prefix for your NFT names (e.g., "My NFT Collection")
+- **Description**: Description for your NFT metadata
+- **Edition Size**: Number of unique artworks to generate
+- **Dimensions**: Width and height in pixels (default: 512x512)
+- **Background**: Configure background generation (static color or random HSL)
+
+### 4. Generate
+
+- Click "Generate" to start creating your collection
+- Watch the progress bar as artworks are generated
+- Each artwork is guaranteed to have unique DNA (combination of traits)
+
+### 5. Download
+
+- Once generation is complete, click "Download" to get a ZIP file containing:
+  - `images/` - All generated PNG images
+  - `json/` - Individual metadata files and `_metadata.json`
+
+## Layer Options
+
+Each layer supports the following options:
+
+- **Blend Mode**: Canvas blend mode (normal, multiply, screen, overlay, etc.)
+- **Opacity**: Layer opacity (0-1)
+- **Bypass DNA**: Exclude this layer from uniqueness checking (useful for backgrounds)
+
+## Technical Details
+
+### Architecture
+
+- **Frontend**: Next.js 15 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Canvas**: HTML5 Canvas API with OffscreenCanvas for performance
+- **Generation**: Async generator pattern for non-blocking generation
+
+### File Structure
+
+```
+├── app/                    # Next.js app directory
+│   ├── layout.tsx         # Root layout
+│   ├── page.tsx           # Main page
+│   └── globals.css        # Global styles
+├── components/
+│   ├── generator/         # Generator components
+│   │   ├── LayerManager.tsx
+│   │   ├── Settings.tsx
+│   │   ├── Preview.tsx
+│   │   └── GenerationControls.tsx
+│   └── ui/                # Reusable UI components
+├── lib/
+│   ├── engine/            # Core generation logic
+│   │   ├── types.ts       # TypeScript types
+│   │   ├── core.ts        # DNA generation logic
+│   │   ├── canvas.ts      # Canvas operations
+│   │   ├── generator.ts   # Main generator
+│   │   └── layer-processor.ts
+│   └── utils.ts           # Utility functions
+└── layers/                # Example layer folders (keep your layers here)
 ```
 
-Update your `format` size, ie the outputted image size, and the `growEditionSizeTo` on each `layerConfigurations` object, which is the amount of variation outputted.
+## Migration from v1.x
 
-You can mix up the `layerConfigurations` order on how the images are saved by setting the variable `shuffleLayerConfigurations` in the `config.js` file to true. It is false by default and will save all images in numerical order.
+This is a complete rewrite of the HashLips Art Engine. Key differences:
 
-If you want to have logs to debug and see what is happening when you generate images you can set the variable `debugLogs` in the `config.js` file to true. It is false by default, so you will only see general logs.
+- **Browser-based**: No Node.js required, runs in the browser
+- **Web UI**: Full graphical interface instead of CLI
+- **TypeScript**: Fully typed codebase
+- **Modern Stack**: Next.js 15, React 19, Tailwind CSS
 
-If you want to play around with different blending modes, you can add a `blend: MODE.colorBurn` field to the layersOrder `options` object.
+Your existing layer folders can still be used - just upload them through the web interface.
 
-If you need a layers to have a different opacity then you can add the `opacity: 0.7` field to the layersOrder `options` object as well.
+## License
 
-If you want to have a layer _ignored_ in the DNA uniqueness check, you can set `bypassDNA: true` in the `options` object. This has the effect of making sure the rest of the traits are unique while not considering the `Background` Layers as traits, for example. The layers _are_ included in the final image.
+MIT License - see LICENSE file for details
 
-To use a different metadata attribute name you can add the `displayName: "Awesome Eye Color"` to the `options` object. All options are optional and can be addes on the same layer if you want to.
+## Credits
 
-Here is an example on how you can play around with both filter fields:
+Original HashLips Art Engine by Daniel Eugene Botha (HashLips)
 
-```js
-const layerConfigurations = [
-  {
-    growEditionSizeTo: 5,
-    layersOrder: [
-      { name: "Background" , {
-        options: {
-          bypassDNA: false;
-        }
-      }},
-      { name: "Eyeball" },
-      {
-        name: "Eye color",
-        options: {
-          blend: MODE.destinationIn,
-          opacity: 0.2,
-          displayName: "Awesome Eye Color",
-        },
-      },
-      { name: "Iris" },
-      { name: "Shine" },
-      { name: "Bottom lid", options: { blend: MODE.overlay, opacity: 0.7 } },
-      { name: "Top lid" },
-    ],
-  },
-];
-```
+**Modernized Version:**
+- Developed by [@jim788e](https://github.com/jim788e)
+- [X (Twitter)](https://x.com/d_misios)
+- Modernized with Next.js 15, TypeScript, and React
 
-Here is a list of the different blending modes that you can optionally use.
+## Support
 
-```js
-const MODE = {
-  sourceOver: "source-over",
-  sourceIn: "source-in",
-  sourceOut: "source-out",
-  sourceAtop: "source-out",
-  destinationOver: "destination-over",
-  destinationIn: "destination-in",
-  destinationOut: "destination-out",
-  destinationAtop: "destination-atop",
-  lighter: "lighter",
-  copy: "copy",
-  xor: "xor",
-  multiply: "multiply",
-  screen: "screen",
-  overlay: "overlay",
-  darken: "darken",
-  lighten: "lighten",
-  colorDodge: "color-dodge",
-  colorBurn: "color-burn",
-  hardLight: "hard-light",
-  softLight: "soft-light",
-  difference: "difference",
-  exclusion: "exclusion",
-  hue: "hue",
-  saturation: "saturation",
-  color: "color",
-  luminosity: "luminosity",
-};
-```
-
-When you are ready, run the following command and your outputted art will be in the `build/images` directory and the json in the `build/json` directory:
-
-```sh
-npm run build
-```
-
-or
-
-```sh
-node index.js
-```
-
-The program will output all the images in the `build/images` directory along with the metadata files in the `build/json` directory. Each collection will have a `_metadata.json` file that consists of all the metadata in the collection inside the `build/json` directory. The `build/json` folder also will contain all the single json files that represent each image file. The single json file of a image will look something like this:
-
-```json
-{
-  "dna": "d956cdf4e460508b5ff90c21974124f68d6edc34",
-  "name": "#1",
-  "description": "This is the description of your NFT project",
-  "image": "https://hashlips/nft/1.png",
-  "edition": 1,
-  "date": 1731990799975,
-  "attributes": [
-    { "trait_type": "Background", "value": "Black" },
-    { "trait_type": "Eyeball", "value": "Red" },
-    { "trait_type": "Eye color", "value": "Yellow" },
-    { "trait_type": "Iris", "value": "Small" },
-    { "trait_type": "Shine", "value": "Shapes" },
-    { "trait_type": "Bottom lid", "value": "Low" },
-    { "trait_type": "Top lid", "value": "Middle" }
-  ],
-  "compiler": "HashLips Art Engine"
-}
-```
-
-You can also add extra metadata to each metadata file by adding your extra items, (key: value) pairs to the `extraMetadata` object variable in the `config.js` file.
-
-```js
-const extraMetadata = {
-  creator: "Daniel Eugene Botha",
-};
-```
-
-If you don't need extra metadata, simply leave the object empty. It is empty by default.
-
-```js
-const extraMetadata = {};
-```
-
-That's it, you're done.
-
-## Utils
-
-### Updating baseUri for IPFS and description
-
-You might possibly want to update the baseUri and description after you have ran your collection. To update the baseUri and description simply run:
-
-```sh
-npm run update_info
-```
-
-### Generate a preview image
-
-Create a preview image collage of your collection, run:
-
-```sh
-npm run preview
-```
-
-### Generate pixelated images from collection
-
-In order to convert images into pixelated images you would need a list of images that you want to convert. So run the generator first.
-
-Then simply run this command:
-
-```sh
-npm run pixelate
-```
-
-All your images will be outputted in the `/build/pixel_images` directory.
-If you want to change the ratio of the pixelation then you can update the ratio property on the `pixelFormat` object in the `src/config.js` file. The lower the number on the left, the more pixelated the image will be.
-
-```js
-const pixelFormat = {
-  ratio: 5 / 128,
-};
-```
-
-### Generate pixelated images from collection
-
-In order to export gifs based on the layers created, you just need to set the export on the `gif` object in the `src/config.js` file to `true`. You can also play around with the `repeat`, `quality` and the `delay` of the exported gif.
-
-Setting the `repeat: -1` will produce a one time render and `repeat: 0` will loop forever.
-
-```js
-const gif = {
-  export: true,
-  repeat: 0,
-  quality: 100,
-  delay: 500,
-};
-```
-
-### Printing rarity data (Experimental feature)
-
-To see the percentages of each attribute across your collection, run:
-
-```sh
-npm run rarity
-```
-
-The output will look something like this:
-
-```sh
-Trait type: Bottom lid
-{ trait: 'High', chance: '20', occurrence: '15% out of 100%' }
-{ trait: 'Low', chance: '40', occurrence: '40% out of 100%' }
-{ trait: 'Middle', chance: '40', occurrence: '45% out of 100%' }
-
-Trait type: Iris
-{ trait: 'Large', chance: '20', occurrence: '15% out of 100%' }
-{ trait: 'Medium', chance: '20', occurrence: '15% out of 100%' }
-{ trait: 'Small', chance: '60', occurrence: '70% out of 100%' }
-```
-
-Hope you create some awesome artworks with this code 👄
+- [📺 YouTube](https://www.youtube.com/channel/UC1LV4_VQGBJHTJjEWUmy8nA)
+- [👄 Discord](https://discord.com/invite/qh6MWhMJDN)
+- [💬 Telegram](https://t.me/hashlipsnft)
+- [🐦 Twitter](https://twitter.com/hashlipsnft)
