@@ -1,6 +1,6 @@
 # HashLips Art Engine v2.0
 
-A modern, browser-based NFT art generation tool built with Next.js 15, TypeScript, and React. Generate unique NFT art collections with layer-based composition directly in your browser.
+A modern, browser-based NFT art generation tool built with Next.js 16, TypeScript, and React 19. Generate unique NFT art collections with layer-based composition directly in your browser.
 
 **This is a modernized, standalone version** - completely rewritten for the browser with a modern web interface.
 
@@ -19,7 +19,8 @@ A modern, browser-based NFT art generation tool built with Next.js 15, TypeScrip
 
 ### Prerequisites
 
-- Node.js 18+ and npm/yarn/pnpm
+- Node.js 20.9+ and npm/yarn/pnpm
+- TypeScript 5.1+
 
 ### Installation
 
@@ -99,11 +100,13 @@ Each layer supports the following options:
 
 ### Architecture
 
-- **Frontend**: Next.js 15 with App Router
-- **Language**: TypeScript
+- **Frontend**: Next.js 16 with App Router
+- **Language**: TypeScript 5.3+
+- **React**: React 19
 - **Styling**: Tailwind CSS
 - **Canvas**: HTML5 Canvas API with OffscreenCanvas for performance
 - **Generation**: Async generator pattern for non-blocking generation
+- **Bundler**: Webpack (configurable, Turbopack available)
 
 ### File Structure
 
@@ -137,10 +140,19 @@ This is a complete rewrite of the original HashLips Art Engine. Key differences:
 - **Browser-based**: No Node.js required, runs entirely in the browser
 - **Web UI**: Full graphical interface instead of CLI
 - **TypeScript**: Fully typed codebase
-- **Modern Stack**: Next.js 15, React 19, Tailwind CSS
+- **Modern Stack**: Next.js 16, React 19, Tailwind CSS
 - **No Server**: Everything runs client-side
 
 Your existing layer folders from v1.x can still be used - just upload them through the web interface.
+
+## What's New in v2.0
+
+- ✅ **Next.js 16** - Latest version with improved performance
+- ✅ **React 19** - Latest React with improved features
+- ✅ **ESLint 9** - Modern linting with flat config support
+- ✅ **TypeScript 5.3+** - Enhanced type safety
+- ✅ **Fixed TypeScript errors** - All type definitions updated
+- ✅ **Improved build system** - Webpack configuration optimized
 
 ## License
 
@@ -154,8 +166,9 @@ MIT License - see LICENSE file for details
 **Modernized Version (v2.0):**
 - Developed by [@jim788e](https://github.com/jim788e)
 - [X (Twitter)](https://x.com/d_misios)
-- Complete rewrite with Next.js 15, TypeScript, and React
+- Complete rewrite with Next.js 16, React 19, and TypeScript
 - Browser-based architecture - no Node.js required
+- Upgraded to Next.js 16 with all latest dependencies
 
 ## Support
 
