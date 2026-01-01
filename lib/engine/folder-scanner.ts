@@ -20,11 +20,12 @@ export async function scanLayersFolder(
   for await (const [name, handle] of directoryHandle.entries()) {
     if (handle.kind === 'directory') {
       const layerFiles: File[] = [];
+      const dirHandle = handle as FileSystemDirectoryHandle;
       
       // Read files from the directory
-      for await (const [fileName, fileHandle] of handle.entries()) {
+      for await (const [fileName, fileHandle] of dirHandle.entries()) {
         if (fileHandle.kind === 'file') {
-          const file = await fileHandle.getFile();
+          const file = await (fileHandle as FileSystemFileHandle).getFile();
           // Only include image files
           if (file.type.startsWith('image/')) {
             layerFiles.push(file);
