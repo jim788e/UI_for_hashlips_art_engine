@@ -2,6 +2,8 @@
 
 A modern, browser-based NFT art generation tool built with Next.js 15, TypeScript, and React. Generate unique NFT art collections with layer-based composition directly in your browser.
 
+**This is a modernized, standalone version** - completely rewritten for the browser with a modern web interface.
+
 ## Features
 
 - 🎨 **Browser-Based Generation** - No server required, runs entirely in the browser
@@ -21,10 +23,10 @@ A modern, browser-based NFT art generation tool built with Next.js 15, TypeScrip
 
 ### Installation
 
-1. Clone the repository:
+1. Clone this repository:
 ```bash
-git clone https://github.com/HashLips/hashlips_art_engine.git
-cd hashlips_art_engine
+git clone https://github.com/jim788e/UI_for_hashlips_art_engine.git
+cd UI_for_hashlips_art_engine
 ```
 
 2. Install dependencies:
@@ -128,16 +130,17 @@ Each layer supports the following options:
 └── layers/                # Example layer folders (keep your layers here)
 ```
 
-## Migration from v1.x
+## Migration from v1.x (Original HashLips)
 
-This is a complete rewrite of the HashLips Art Engine. Key differences:
+This is a complete rewrite of the original HashLips Art Engine. Key differences:
 
-- **Browser-based**: No Node.js required, runs in the browser
+- **Browser-based**: No Node.js required, runs entirely in the browser
 - **Web UI**: Full graphical interface instead of CLI
 - **TypeScript**: Fully typed codebase
 - **Modern Stack**: Next.js 15, React 19, Tailwind CSS
+- **No Server**: Everything runs client-side
 
-Your existing layer folders can still be used - just upload them through the web interface.
+Your existing layer folders from v1.x can still be used - just upload them through the web interface.
 
 ## License
 
@@ -145,12 +148,14 @@ MIT License - see LICENSE file for details
 
 ## Credits
 
-Original HashLips Art Engine by Daniel Eugene Botha (HashLips)
+**Original Concept:**
+- HashLips Art Engine v1.x by Daniel Eugene Botha (HashLips)
 
-**Modernized Version:**
+**Modernized Version (v2.0):**
 - Developed by [@jim788e](https://github.com/jim788e)
 - [X (Twitter)](https://x.com/d_misios)
-- Modernized with Next.js 15, TypeScript, and React
+- Complete rewrite with Next.js 15, TypeScript, and React
+- Browser-based architecture - no Node.js required
 
 ## Support
 
